@@ -13,6 +13,8 @@ generation and repository inventory.
   safe literal-name updates.
 - `scripts/Scan-TerraformResources.ps1`: Read-only local Terraform inventory and
   policy-coverage report.
+- `IMPLEMENTATION-SUMMARY.md`: Detailed implementation and customer handoff
+  record.
 
 ## Policy lifecycle
 
