@@ -1,0 +1,130 @@
+{
+  "metadata": {
+    "customer": "Example",
+    "version": "1.0.0",
+    "notice": "Synthetic policy for demonstration. Replace it with approved customer rules."
+  },
+  "normal_case": "lower",
+  "code_sets": {
+    "environment": {
+      "development": "dev",
+      "dev": "dev",
+      "test": "tst",
+      "tst": "tst",
+      "production": "prd",
+      "prod": "prd",
+      "prd": "prd"
+    },
+    "region": {
+      "eastus": "eus",
+      "eus": "eus",
+      "westus2": "wus2",
+      "wus2": "wus2"
+    }
+  },
+  "rules": {
+    "resource_group": {
+      "status": "approved",
+      "separator": "-",
+      "min_length": 1,
+      "max_length": 90,
+      "pattern": "^rg-[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "uniqueness_scope": "subscription",
+      "terraform_resource_types": [
+        "azurerm_resource_group"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "rg"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region",
+          "code_set": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "storage_account": {
+      "status": "approved",
+      "separator": "",
+      "min_length": 3,
+      "max_length": 24,
+      "pattern": "^st[a-z0-9]+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_storage_account"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "st"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region",
+          "code_set": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "virtual_network": {
+      "status": "draft",
+      "separator": "-",
+      "min_length": 2,
+      "max_length": 64,
+      "pattern": "^vnet-[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "uniqueness_scope": "resource-group",
+      "terraform_resource_types": [
+        "azurerm_virtual_network"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "vnet"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region",
+          "code_set": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "managed_disk": {
+      "status": "missing",
+      "separator": "-",
+      "pattern": "^$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_managed_disk"
+      ],
+      "components": []
+    }
+  }
+}
