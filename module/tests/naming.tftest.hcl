@@ -86,6 +86,25 @@ run "allows_advisory_draft_rule" {
   }
 }
 
+run "allows_incomplete_advisory_rule" {
+  command = plan
+
+  variables {
+    resource_type = "draft_example"
+    values        = {}
+  }
+
+  assert {
+    condition     = output.name == "draft"
+    error_message = "Incomplete advisory rules should return a partial name without blocking."
+  }
+
+  assert {
+    condition     = length(output.diagnostics) == 2
+    error_message = "Incomplete draft rules should report missing components and advisory status."
+  }
+}
+
 run "rejects_invalid_approved_name" {
   command = plan
 

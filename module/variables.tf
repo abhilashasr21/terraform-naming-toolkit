@@ -33,6 +33,24 @@ variable "policy" {
     ])
     error_message = "Every rule status must be approved, draft, conflict, missing, or legacy."
   }
+
+  validation {
+    condition = alltrue([
+      for rule in values(var.policy.rules) :
+      rule.case == null || contains(["lower", "upper", "preserve"], rule.case)
+    ])
+    error_message = "Every rule case must be lower, upper, preserve, or omitted."
+  }
+
+  validation {
+    condition = alltrue(flatten([
+      for rule in values(var.policy.rules) : [
+        for component in rule.components :
+        component.code_set == null || contains(keys(var.policy.code_sets), component.code_set)
+      ]
+    ]))
+    error_message = "Every component code_set must reference a key in policy.code_sets."
+  }
 }
 
 variable "resource_type" {

@@ -20,3 +20,9 @@ module "example" {
 }
 
 # resource "azurerm_storage_account" "commented_out" {}
+
+locals {
+  ignored_heredoc = <<-EOT
+    resource "azurerm_storage_account" "inside_heredoc" {}
+  EOT
+}

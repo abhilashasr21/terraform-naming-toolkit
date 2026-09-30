@@ -1,0 +1,19 @@
+{
+  "resource": {
+    "azurerm_storage_account": {
+      "json_covered": {
+        "name": "stexampledeveus01"
+      }
+    }
+  },
+  "data": {
+    "azurerm_subscription": {
+      "current": {}
+    }
+  },
+  "module": {
+    "json_example": {
+      "source": "../../module"
+    }
+  }
+}

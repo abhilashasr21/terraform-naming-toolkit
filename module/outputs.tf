@@ -8,7 +8,7 @@ output "name" {
   }
 
   precondition {
-    condition     = length(local.missing_components) == 0
+    condition     = !local.enforce_rule || length(local.missing_components) == 0
     error_message = "Missing required naming components: ${join(", ", local.missing_components)}."
   }
 
