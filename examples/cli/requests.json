@@ -1,0 +1,11 @@
+{
+  "azurerm_resource_group.demo": {
+    "rule": "resource_group",
+    "values": {
+      "workload": "payments",
+      "environment": "production",
+      "region": "eastus",
+      "index": "01"
+    }
+  }
+}

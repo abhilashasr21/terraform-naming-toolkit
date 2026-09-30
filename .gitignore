@@ -4,3 +4,6 @@
 *.tfplan
 terraform-resource-inventory.json
 crash.log
+__pycache__/
+*.py[cod]
+NAMING-CHANGELOG.md
