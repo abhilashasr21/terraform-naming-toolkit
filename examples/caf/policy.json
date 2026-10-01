@@ -1,0 +1,4365 @@
+{
+  "metadata": {
+    "source_workbook": "(none - CAF baseline)",
+    "source_sha256": "1a444a018934a932b0096f519283ebd9f40e37a142bd3ea5b8c10a45d5d653c7",
+    "generated_by": "xlsx2policy.py 1.0.0 (--caf-only)",
+    "caf_baseline": {
+      "source": "Azure Cloud Adoption Framework (CAF) resource abbreviations",
+      "source_url": "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations",
+      "captured": "2026-10-01"
+    },
+    "notice": "Baseline generated from Microsoft CAF recommendations. Supply a customer workbook to override; add a 'region' code set for your target regions."
+  },
+  "normal_case": "lower",
+  "code_sets": {
+    "environment": {
+      "prod": "prod",
+      "dev": "dev",
+      "qa": "qa",
+      "stage": "stage",
+      "test": "test"
+    }
+  },
+  "rules": {
+    "ai_search": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^srch(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_search_service"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "srch"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "foundry_tools": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^ais(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_cognitive_account"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "ais"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "foundry_account": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^aif(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "aif"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "foundry_hub": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^hub(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "hub"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_ai_video_indexer": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^avi(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "avi"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_machine_learning_workspace": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^mlw(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_machine_learning_workspace"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "mlw"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_openai_service": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^oai(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "oai"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "bot_service": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^bot(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_bot_service_azure_bot"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "bot"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "computer_vision": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^cv(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "cv"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "content_moderator": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^cm(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "cm"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "content_safety": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^cs(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "cs"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "document_intelligence": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^di(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "di"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "face_api": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^face(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "face"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "health_insights": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^hi(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "hi"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "immersive_reader": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^ir(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "ir"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "language_service": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^lang(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "lang"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "speech_service": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^spch(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "spch"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "translator": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^trsl(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "trsl"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_analysis_services_server": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^as(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_analysis_services_server"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "as"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_databricks_workspace": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^dbw(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_databricks_workspace"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "dbw"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_data_explorer_cluster": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^dec(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_kusto_cluster"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "dec"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_data_explorer_cluster_database": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^dedb(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_kusto_database"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "dedb"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_data_factory": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^adf(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_data_factory"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "adf"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_digital_twin_instance": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^dt(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_digital_twins_instance"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "dt"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_stream_analytics": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^asa(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_stream_analytics_cluster"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "asa"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_synapse_analytics_sql_dedicated_pool": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^syndp(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_synapse_sql_pool"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "syndp"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_synapse_analytics_spark_pool": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^synsp(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_synapse_spark_pool"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "synsp"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_synapse_analytics_workspaces": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^synw(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_synapse_workspace"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "synw"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "data_lake_store_account": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^dls(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_data_lake_store"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "dls"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "event_hubs_namespace": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^evhns(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_eventhub_namespace"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "evhns"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "event_hub": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^evh(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_eventhub"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "evh"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "event_hub_consumer_group": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^evhcg(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_eventhub_consumer_group"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "evhcg"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "event_grid_domain": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^evgd(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_eventgrid_domain"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "evgd"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "event_grid_subscriptions": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^evgs(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_eventgrid_event_subscription"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "evgs"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "event_grid_topic": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^evgt(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_eventgrid_domain_topic"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "evgt"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "event_grid_system_topic": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^egst(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_eventgrid_system_topic"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "egst"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "hdinsight_hadoop_cluster": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^hadoop(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_hdinsight_hadoop_cluster"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "hadoop"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "hdinsight_hbase_cluster": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^hbase(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_hdinsight_hbase_cluster"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "hbase"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "hdinsight_kafka_cluster": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^kafka(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_hdinsight_kafka_cluster"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "kafka"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "hdinsight_spark_cluster": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^spark(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_hdinsight_spark_cluster"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "spark"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "iot_hub": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^iot(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_iothub"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "iot"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "provisioning_services": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^provs(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_iothub_dps"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "provs"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "power_bi_embedded": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^pbi(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_powerbi_embedded"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "pbi"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "time_series_insights_environment": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^tsi(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_iot_time_series_insights_gen2_environment"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "tsi"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "app_service_environment": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^ase(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_app_service_environment_v3"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "ase"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "app_service_plan": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^asp(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_service_plan"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "asp"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_load_testing_instance": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^lt(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_load_test"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "lt"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "availability_set": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^avail(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_availability_set"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "avail"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_arc_enabled_server": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^arcs(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "arcs"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_arc_enabled_kubernetes_cluster": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^arck(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "arck"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "batch_accounts": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^ba(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_batch_account"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "ba"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "communication_services": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^acs(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_communication_service"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "acs"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "disk_encryption_set": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^des(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_disk_encryption_set"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "des"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "function_app": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^func(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_linux_function_app",
+        "azurerm_windows_function_app"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "func"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "gallery": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^gal(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_shared_image_gallery"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "gal"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "managed_disk": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^disk(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_managed_disk"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "disk"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "notification_hubs": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^ntf(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_notification_hub"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "ntf"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "notification_hubs_namespace": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^ntfns(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_notification_hub_namespace"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "ntfns"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "proximity_placement_group": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^ppg(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_proximity_placement_group"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "ppg"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "snapshot": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^snap(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_snapshot"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "snap"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "static_web_app": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^stapp(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_static_web_app"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "stapp"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "virtual_machine": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^vm(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "resource_group",
+      "terraform_resource_types": [
+        "azurerm_linux_virtual_machine",
+        "azurerm_windows_virtual_machine"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "vm"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "virtual_machine_scale_set": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^vmss(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_linux_virtual_machine_scale_set",
+        "azurerm_windows_virtual_machine_scale_set"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "vmss"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "web_app": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^app(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_linux_web_app",
+        "azurerm_windows_web_app"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "app"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "aks_cluster": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^aks(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_kubernetes_cluster"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "aks"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "aks_user_node_pool": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^np(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_kubernetes_cluster_node_pool"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "np"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "container_apps": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^ca(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_container_app"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "ca"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "container_apps_environment": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^cae(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_container_app_environment"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "cae"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "container_registry": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^cr(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_container_registry"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "cr"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "container_instance": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^ci(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_container_group"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "ci"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "service_fabric_cluster": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^sf(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_service_fabric_cluster"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "sf"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_cosmos_db_database": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^cosmos(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_cosmosdb_account"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "cosmos"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_managed_redis": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^amr(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_redis_enterprise_cluster"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "amr"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_sql_database_server": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^sql(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_mssql_server"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "sql"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_sql_database": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^sqldb(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_mssql_database"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "sqldb"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_sql_elastic_pool": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^sqlep(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_mssql_elasticpool"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "sqlep"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "mysql_database": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^mysql(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_mysql_flexible_server"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "mysql"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "postgresql_flexible_server": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^pgsql(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_postgresql_flexible_server"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "pgsql"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "sql_managed_instance": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^sqlmi(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_mssql_managed_instance"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "sqlmi"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "app_configuration_store": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^appcs(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_app_configuration"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "appcs"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "maps_account": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^map(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_maps_account"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "map"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "signalr": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^sigr(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_signalr_service"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "sigr"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "webpubsub": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^wps(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_web_pubsub"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "wps"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_managed_grafana": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^amg(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_dashboard_grafana"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "amg"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "api_management_service_instance": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^apim(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_api_management"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "apim"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "integration_account": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^ia(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_logic_app_integration_account"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "ia"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "logic_app": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^logic(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_logic_app_workflow"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "logic"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "service_bus_namespace": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^sbns(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_servicebus_namespace"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "sbns"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "service_bus_queue": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^sbq(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_servicebus_queue"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "sbq"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "service_bus_topic": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^sbt(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_servicebus_topic"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "sbt"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "service_bus_topic_subscription": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^sbts(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_servicebus_subscription"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "sbts"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "automation_account": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^aa(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_automation_account"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "aa"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "application_insights": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^appi(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_application_insights"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "appi"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_monitor_action_group": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^ag(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_monitor_action_group"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "ag"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_monitor_data_collection_rule": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^dcr(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_monitor_data_collection_rule"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "dcr"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "data_collection_endpoint": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^dce(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_monitor_data_collection_endpoint"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "dce"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "log_analytics_workspace": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^log(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_log_analytics_workspace"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "log"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "log_analytics_query_packs": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^pack(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_log_analytics_query_pack"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "pack"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "management_group": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^mg(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_management_group"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "mg"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "microsoft_purview_instance": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^pview(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_purview_account"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "pview"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "resource_group": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^rg(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_resource_group"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "rg"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "template_specs_name": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^ts(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_resource_group_template_deployment"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "ts"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "database_migration_service_instance": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^dms(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_database_migration_service"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "dms"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "recovery_services_vault": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^rsv(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_recovery_services_vault"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "rsv"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "application_gateway": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^agw(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_application_gateway"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "agw"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "application_security_group": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^asg(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_application_security_group"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "asg"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "cdn_profile": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^cdnp(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_cdn_profile"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "cdnp"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "cdn_endpoint": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^cdne(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_cdn_endpoint"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "cdne"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "connections": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^con(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_virtual_network_gateway_connection"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "con"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "dns_forwarding_ruleset": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^dnsfrs(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_private_dns_resolver_dns_forwarding_ruleset"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "dnsfrs"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "dns_private_resolver": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^dnspr(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_private_dns_resolver"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "dnspr"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "firewall": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^afw(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_firewall"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "afw"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "firewall_policy": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^afwp(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_firewall_policy"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "afwp"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "expressroute_circuit": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^erc(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_express_route_circuit"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "erc"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "expressroute_gateway": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^ergw(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_express_route_gateway"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "ergw"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "front_door_profile": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^afd(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_cdn_frontdoor_profile"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "afd"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "front_door_endpoint": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^fde(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_cdn_frontdoor_endpoint"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "fde"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "front_door_firewall_policy": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^fdfp(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_cdn_frontdoor_firewall_policy"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "fdfp"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "ip_group": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^ipg(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_ip_group"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "ipg"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "load_balancer": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^lbi(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_lb"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "lbi"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "local_network_gateway": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^lgw(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_local_network_gateway"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "lgw"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "nat_gateway": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^ng(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_nat_gateway"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "ng"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "network_interface": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^nic(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_network_interface"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "nic"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "network_security_group": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^nsg(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_network_security_group"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "nsg"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "network_watcher": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^nw(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_network_watcher"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "nw"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "private_link": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^pl(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_private_link_service"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "pl"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "private_endpoint": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^pep(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_private_endpoint"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "pep"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "public_ip_address": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^pip(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_public_ip"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "pip"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "public_ip_address_prefix": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^ippre(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_public_ip_prefix"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "ippre"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "route_filter": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^rf(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_route_filter"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "rf"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "route_table": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^rt(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_route_table"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "rt"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "traffic_manager_profile": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^traf(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_traffic_manager_profile"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "traf"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "user_defined_route": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^udr(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_route"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "udr"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "virtual_network": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^vnet(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "resource_group",
+      "terraform_resource_types": [
+        "azurerm_virtual_network"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "vnet"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "virtual_network_gateway": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^vgw(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_virtual_network_gateway"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "vgw"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "virtual_network_manager": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^vnm(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_network_manager"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "vnm"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "virtual_network_peering": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^peer(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_virtual_network_peering"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "peer"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "virtual_network_subnet": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^snet(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_subnet"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "snet"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "virtual_wan": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^vwan(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_virtual_wan"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "vwan"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "virtual_wan_hub": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^vhub(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_virtual_hub"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "vhub"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "azure_bastion": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^bas(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_bastion_host"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "bas"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "key_vault": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^kv(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_key_vault"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "kv"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "key_vault_managed_hsm": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^kvmhsm(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_key_vault_managed_hardware_security_module"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "kvmhsm"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "managed_identity": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^id(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_user_assigned_identity"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "id"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "ssh_key": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^sshkey(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_ssh_public_key"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "sshkey"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "vpn_gateway": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^vpng(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_vpn_gateway"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "vpng"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "vpn_site": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^vst(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_vpn_site"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "vst"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "web_application_firewall_policy": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^waf(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_web_application_firewall_policy"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "waf"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "backup_vault_name": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^bvault(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_data_protection_backup_vault"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "bvault"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "file_share": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^share(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_storage_share"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "share"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "storage_account": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^st(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_storage_account"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "st"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "storage_sync_service_name": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^sss(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_storage_sync"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "sss"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "virtual_desktop_host_pool": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^vdpool(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_virtual_desktop_host_pool"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "vdpool"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "virtual_desktop_application_group": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^vdag(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_virtual_desktop_application_group"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "vdag"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "virtual_desktop_workspace": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^vdws(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_virtual_desktop_workspace"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "vdws"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    },
+    "virtual_desktop_scaling_plan": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^vdscaling(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_virtual_desktop_scaling_plan"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "vdscaling"
+        },
+        {
+          "key": "workload"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "region"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    }
+  }
+}

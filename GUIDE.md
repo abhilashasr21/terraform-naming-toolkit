@@ -53,6 +53,8 @@ Use this first. It compiles the customer's naming workbook into `policy.json`.
 | `python xlsx2policy.py book.xlsx --out policy.json` | Compile the workbook into a policy. |
 | `... --report conversion-report.md` | Also write the human review report. |
 | `... --check` | Exit non-zero if `policy.json` is missing or stale versus the workbook (CI gate). |
+| `... --caf-fallback` | Fill missing abbreviations / Terraform types from Microsoft CAF (workbook still wins). |
+| `xlsx2policy.py --caf-only --out policy.json` | Generate a Microsoft CAF baseline policy with no workbook. |
 
 Sheet-to-policy mapping:
 
@@ -67,6 +69,18 @@ Sheet-to-policy mapping:
 Status mapping: "Done (No Conflict)"/"Agreed" -> `approved`; "In-Progress",
 "To Be Discussed", blank -> `draft` (advisory). The embedded `source_sha256` in
 the policy metadata is what `--check` compares.
+
+**Microsoft CAF fallback (`catalogs/azure-caf.json`).** When a customer has no
+abbreviation for a resource, the converter can fall back to Microsoft's
+[Cloud Adoption Framework](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations)
+recommendations - 150+ resources mapped to abbreviation, ARM namespace, and
+Terraform type. The customer workbook always takes precedence; CAF only fills
+gaps, and every fallback is flagged in the report's `CAF` column and in
+`metadata.caf_fallback`. With `--caf-only` the catalog alone produces a compliant
+baseline (`afw-hub-prod-cnc-01`, `st-app-prod-cnc-01`, ...) usable by any team.
+The catalog is generated offline by `catalogs/build_caf_catalog.py`; re-run it to
+refresh from Microsoft Learn.
+
 
 ### A. The policy (the engine's input - generated from Excel)
 
@@ -173,12 +187,15 @@ Read-only inventory of a customer repo (PowerShell 5.1+).
 
 | Path | Purpose |
 | --- | --- |
+| `catalogs/` | Microsoft CAF abbreviation catalog (`azure-caf.json`) + its generator. |
 | `examples/excel/` | Synthetic sample workbook, its generator, and the converted policy + report. |
+| `examples/caf/` | Microsoft CAF baseline policy + report (produced by `--caf-only`). |
 | `examples/batch/` | Generate many names at once via the module + `requests.json` (keyed by `resource_type`). |
 | `examples/inventory/` | Fixtures for the scanner. |
 | `examples/cli/` | Fixtures proving safe literal edit vs. ignored computed/heredoc cases. |
 | `tests/test_namingctl.py` | 28 CLI safety/behaviour tests. |
 | `tests/test_xlsx2policy.py` | 8 converter tests (sheet parsing, section bounds, constraints, end-to-end, staleness). |
+| `tests/test_caf_catalog.py` | 13 CAF tests (catalog load, abbreviation match, fallback, `--caf-only` end-to-end). |
 
 ### F. Docs and housekeeping
 
@@ -217,8 +234,8 @@ accidental deployment gate. Only `approved` rules enforce.
 
 ## 5. Validation already passed
 
-- Python CLI tests: 28 passed (2 symlink tests skipped - no Windows symlink
-  privilege).
+- Python tests: 47 passed, 2 skipped (CLI + converter + CAF suites; skips are
+  Windows symlink-privilege cases).
 - Terraform module tests: 6 passed (Terraform v1.15.2).
 - Repository scanned clean: no workbook, SharePoint, customer, or local-path
   references.

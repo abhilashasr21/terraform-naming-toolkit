@@ -49,6 +49,22 @@ The customer's naming-convention **Excel workbook is the authoritative source**.
 `policy.json` is therefore a generated artifact. Customers edit the workbook and
 re-run the converter rather than hand-editing JSON.
 
+### Microsoft CAF fallback
+
+For teams that have not defined their own abbreviations, the converter can draw
+on Microsoft's Cloud Adoption Framework (CAF) recommendations:
+
+- `catalogs/azure-caf.json` maps 150+ Azure resources to CAF abbreviation, ARM
+  provider namespace, and Terraform type. It is generated offline by
+  `catalogs/build_caf_catalog.py` from public Microsoft Learn guidance.
+- `--caf-fallback` fills a rule's missing abbreviation, Terraform mapping, or
+  uniqueness scope from CAF. **The customer workbook always wins**; CAF only fills
+  gaps, and every fallback is flagged in the report (`CAF` column) and in
+  `metadata.caf_fallback`.
+- `--caf-only` generates a complete, compliant baseline policy from the catalog
+  with no workbook at all, using CAF's recommended component order
+  (`resource-workload-environment-region-instance`) - e.g. `afw-hub-prod-cnc-01`.
+
 ### Replaceable policy schema
 
 - code sets and abbreviations;
@@ -132,11 +148,14 @@ normal Terraform validation and plan workflow before deployment.
 
 | Path | Purpose |
 | --- | --- |
-| `xlsx2policy.py` | Offline converter: naming workbook (.xlsx) -> `policy.json`. |
+| `xlsx2policy.py` | Offline converter: naming workbook (.xlsx) -> `policy.json`; `--caf-fallback` / `--caf-only` use the CAF catalog. |
+| `catalogs/azure-caf.json` | Microsoft CAF abbreviation catalog (150+ resources). |
+| `catalogs/build_caf_catalog.py` | Offline generator for the CAF catalog. |
 | `module/` | Reusable Terraform naming module. |
 | `module/tests/naming.tftest.hcl` | Terraform-native module tests. |
 | `policies/example/policy.json` | Synthetic, customer-neutral policy example. |
 | `examples/excel/` | Synthetic sample workbook, generator, converted policy + report. |
+| `examples/caf/` | Microsoft CAF baseline policy + report (`--caf-only`). |
 | `examples/batch/` | Batch Terraform name-generation example. |
 | `examples/inventory/` | Scanner fixtures. |
 | `examples/cli/` | CLI editing and ignored-case fixtures. |
@@ -144,6 +163,7 @@ normal Terraform validation and plan workflow before deployment.
 | `namingctl.py` | Standalone offline planning and apply CLI. |
 | `tests/test_namingctl.py` | CLI regression and safety tests. |
 | `tests/test_xlsx2policy.py` | Converter tests (sheet parsing, section bounds, staleness, end-to-end). |
+| `tests/test_caf_catalog.py` | CAF catalog, fallback, and `--caf-only` tests. |
 | `README.md` | Quick start and operating instructions. |
 | `GUIDE.md` | Complete guide to every file, inputs, and outputs. |
 | `IMPLEMENTATION-SUMMARY.md` | Detailed implementation and handoff record. |
@@ -151,7 +171,9 @@ normal Terraform validation and plan workflow before deployment.
 ## Customer onboarding
 
 1. Copy the repository into the restricted environment.
-2. Compile the customer's naming workbook into a policy with `xlsx2policy.py`.
+2. Compile the customer's naming workbook into a policy with `xlsx2policy.py`
+   (add `--caf-fallback` to fill resources the customer has not abbreviated, or
+   `--caf-only` to start from a Microsoft CAF baseline when there is no workbook).
 3. Review the conversion report; fix unresolved rows in the workbook and re-run.
 4. Keep unresolved rows as `draft`, `conflict`, or `missing`.
 5. Run the PowerShell scanner against the local Terraform repository.
@@ -182,7 +204,7 @@ python .\namingctl.py apply C:\customer\terraform `
 
 ## Validation completed
 
-- Python tests: 34 passed, 2 skipped (converter + CLI suites).
+- Python tests: 47 passed, 2 skipped (converter + CLI + CAF suites).
 - Windows symlink tests: 2 skipped because the current account lacks symlink
   privileges.
 - Terraform module tests: 6 passed.

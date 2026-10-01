@@ -202,6 +202,67 @@ def status_from_text(text: str) -> str | None:
 
 
 # --------------------------------------------------------------------------- #
+# CAF fallback catalog (Microsoft Cloud Adoption Framework)
+# --------------------------------------------------------------------------- #
+
+DEFAULT_CAF_PATH = Path(__file__).resolve().parent / "catalogs" / "azure-caf.json"
+
+
+class CafCatalog:
+    """Lookup over the Microsoft CAF abbreviation catalog.
+
+    Used only as a *fallback*: a customer workbook always wins. When a workbook
+    rule has no resource abbreviation or no Terraform mapping, the matching CAF
+    entry supplies Microsoft's recommended value.
+    """
+
+    def __init__(self, data: dict) -> None:
+        self.metadata = data.get("metadata", {})
+        self.component_order = data.get("component_order", [])
+        self.delimiter = data.get("delimiter", "-")
+        self.default_code_sets = data.get("default_code_sets", {})
+        self.resources: list[dict] = data.get("resources", [])
+        self._by_slug: dict[str, dict] = {}
+        self._by_tf: dict[str, dict] = {}
+        self._by_abbr: dict[str, dict] = {}
+        for entry in self.resources:
+            self._by_slug.setdefault(slug(entry["label"]), entry)
+            self._by_abbr.setdefault(entry["abbreviation"].lower(), entry)
+            for tf in entry.get("terraform_resource_types", []):
+                self._by_tf.setdefault(tf, entry)
+
+    @classmethod
+    def load(cls, path: Path) -> "CafCatalog":
+        return cls(json.loads(Path(path).read_text(encoding="utf-8")))
+
+    def match(self, rule_key: str, name_text: str) -> dict | None:
+        """Find the best CAF entry for a workbook resource row."""
+        candidates = [rule_key, slug(name_text)]
+        norm = normalise_token(name_text)
+        for key in candidates:
+            if key in self._by_slug:
+                return self._by_slug[key]
+        # Singular/plural tolerance (e.g. 'public_ips' -> 'public_ip',
+        # 'public_ip_addresses' -> 'public_ip_address').
+        for key in candidates:
+            for suffix in ("es", "s"):
+                if key.endswith(suffix) and key[: -len(suffix)] in self._by_slug:
+                    return self._by_slug[key[: -len(suffix)]]
+        # Match on an abbreviation appearing as a standalone token in the name.
+        for abbr, entry in self._by_abbr.items():
+            if re.search(rf"\b{re.escape(abbr)}\b", norm):
+                return entry
+        return None
+
+
+def load_caf_catalog(path: Path | None) -> CafCatalog | None:
+    target = path or DEFAULT_CAF_PATH
+    if not Path(target).is_file():
+        return None
+    return CafCatalog.load(target)
+
+
+# --------------------------------------------------------------------------- #
 # Code-set extraction
 # --------------------------------------------------------------------------- #
 
@@ -429,7 +490,7 @@ def synthesise_regex(components: list[dict], separator: str) -> str:
 # --------------------------------------------------------------------------- #
 
 
-def extract_rules(wb: Workbook, constraints, warnings) -> tuple[dict, list[dict]]:
+def extract_rules(wb: Workbook, constraints, warnings, caf: "CafCatalog | None" = None) -> tuple[dict, list[dict]]:
     report_rows: list[dict] = []
     rules: dict[str, dict] = {}
 
@@ -477,6 +538,28 @@ def extract_rules(wb: Workbook, constraints, warnings) -> tuple[dict, list[dict]
         components, separator, notes = parse_pattern(pattern)
         info = match_constraint(rule_key, name, constraints)
 
+        tf_types = list(TERRAFORM_TYPES.get(rule_key, []))
+        uniqueness = info.get("uniqueness_scope", "unknown")
+        caf_abbr_used = False
+        caf_tf_used = False
+        caf_scope_used = False
+        if caf is not None:
+            entry = caf.match(rule_key, name)
+            if entry:
+                has_literal = bool(components and components[0].get("literal"))
+                if not has_literal and entry.get("abbreviation"):
+                    components.insert(0, {"key": "resource", "literal": entry["abbreviation"].lower()})
+                    if not separator:
+                        separator = caf.delimiter
+                    caf_abbr_used = True
+                    notes.append(f"CAF abbreviation '{entry['abbreviation']}' applied (no workbook value)")
+                if not tf_types and entry.get("terraform_resource_types"):
+                    tf_types = list(entry["terraform_resource_types"])
+                    caf_tf_used = True
+                if uniqueness == "unknown" and entry.get("uniqueness_scope"):
+                    uniqueness = entry["uniqueness_scope"]
+                    caf_scope_used = True
+
         raw_status = ""
         if 0 <= status_c < len(row):
             raw_status = row[status_c]
@@ -494,8 +577,8 @@ def extract_rules(wb: Workbook, constraints, warnings) -> tuple[dict, list[dict]
             "status": status,
             "separator": separator,
             "pattern": info.get("pattern", synthesise_regex(components, separator)),
-            "uniqueness_scope": info.get("uniqueness_scope", "unknown"),
-            "terraform_resource_types": TERRAFORM_TYPES.get(rule_key, []),
+            "uniqueness_scope": uniqueness,
+            "terraform_resource_types": tf_types,
             "components": components,
         }
         if "min_length" in info:
@@ -510,6 +593,7 @@ def extract_rules(wb: Workbook, constraints, warnings) -> tuple[dict, list[dict]
             "source_pattern": pattern.splitlines()[0].strip(),
             "status": status,
             "terraform_mapped": bool(rule["terraform_resource_types"]),
+            "caf_fallback": caf_abbr_used or caf_tf_used or caf_scope_used,
             "notes": notes,
         })
 
@@ -523,7 +607,7 @@ def extract_rules(wb: Workbook, constraints, warnings) -> tuple[dict, list[dict]
 # --------------------------------------------------------------------------- #
 
 
-def build_policy(wb: Workbook, source: Path) -> tuple[dict, list[dict], list[str]]:
+def build_policy(wb: Workbook, source: Path, caf: "CafCatalog | None" = None) -> tuple[dict, list[dict], list[str]]:
     warnings: list[str] = []
     code_sets: dict[str, dict[str, str]] = {}
     region = extract_region_codes(wb, warnings)
@@ -532,7 +616,7 @@ def build_policy(wb: Workbook, source: Path) -> tuple[dict, list[dict], list[str
     code_sets.update(extract_code_reference(wb, warnings))
 
     constraints = extract_constraints(wb)
-    rules, report_rows = extract_rules(wb, constraints, warnings)
+    rules, report_rows = extract_rules(wb, constraints, warnings, caf)
 
     # Drop code_set references that have no matching code set.
     available = set(code_sets.keys())
@@ -542,12 +626,97 @@ def build_policy(wb: Workbook, source: Path) -> tuple[dict, list[dict], list[str
                 comp.pop("code_set", None)
 
     digest = hashlib.sha256(source.read_bytes()).hexdigest()
+    caf_used = any(r.get("caf_fallback") for r in report_rows)
+    metadata = {
+        "source_workbook": source.name,
+        "source_sha256": digest,
+        "generated_by": f"xlsx2policy.py {VERSION}",
+        "notice": "Generated from the naming workbook. Edit the workbook, then re-run the converter. Do not hand-edit.",
+    }
+    if caf is not None and caf_used:
+        metadata["caf_fallback"] = {
+            "applied": True,
+            "source": caf.metadata.get("name", "Azure CAF catalog"),
+            "source_url": caf.metadata.get("abbreviations_url", ""),
+        }
+    policy = {
+        "metadata": metadata,
+        "normal_case": "lower",
+        "code_sets": code_sets,
+        "rules": rules,
+    }
+    return policy, report_rows, warnings
+
+
+def build_caf_policy(caf: "CafCatalog") -> tuple[dict, list[dict], list[str]]:
+    """Generate a baseline policy purely from the Microsoft CAF catalog.
+
+    For teams with no naming workbook at all: every catalogued resource gets a
+    CAF-standard rule using the recommended component order
+    (resource-workload-environment-region-instance) and abbreviation.
+    """
+    warnings: list[str] = []
+    report_rows: list[dict] = []
+    env_codes = caf.default_code_sets.get("environment", {})
+    code_sets = {"environment": dict(env_codes)} if env_codes else {}
+
+    # Map CAF component-order tokens to policy component keys / code sets.
+    order_map = {
+        "resource": None,  # emitted as a literal, handled separately
+        "workload": ("workload", None),
+        "environment": ("environment", "environment" if env_codes else None),
+        "region": ("region", None),  # region codes are customer-specific
+        "instance": ("index", None),
+    }
+
+    rules: dict[str, dict] = {}
+    for entry in caf.resources:
+        rule_key = slug(entry["label"])
+        if not rule_key or rule_key in rules:
+            continue
+        components: list[dict] = [{"key": "resource", "literal": entry["abbreviation"].lower()}]
+        for token in caf.component_order:
+            if token == "resource":
+                continue
+            mapped = order_map.get(token)
+            if not mapped:
+                continue
+            key, code_set = mapped
+            comp: dict = {"key": key}
+            if code_set:
+                comp["code_set"] = code_set
+            components.append(comp)
+        rule = {
+            "status": "approved",
+            "separator": caf.delimiter,
+            "pattern": synthesise_regex(components, caf.delimiter),
+            "uniqueness_scope": entry.get("uniqueness_scope", "unknown"),
+            "terraform_resource_types": list(entry.get("terraform_resource_types", [])),
+            "components": components,
+        }
+        rules[rule_key] = rule
+        report_rows.append({
+            "rule": rule_key,
+            "resource": entry["label"],
+            "source_pattern": f"{entry['abbreviation']}-<workload>-<environment>-<region>-<instance>",
+            "status": "approved",
+            "terraform_mapped": bool(rule["terraform_resource_types"]),
+            "caf_fallback": True,
+            "notes": [],
+        })
+
+    catalog_sha = hashlib.sha256(json.dumps(caf.resources, sort_keys=True).encode()).hexdigest()
     policy = {
         "metadata": {
-            "source_workbook": source.name,
-            "source_sha256": digest,
-            "generated_by": f"xlsx2policy.py {VERSION}",
-            "notice": "Generated from the naming workbook. Edit the workbook, then re-run the converter. Do not hand-edit.",
+            "source_workbook": "(none - CAF baseline)",
+            "source_sha256": catalog_sha,
+            "generated_by": f"xlsx2policy.py {VERSION} (--caf-only)",
+            "caf_baseline": {
+                "source": caf.metadata.get("name", "Azure CAF catalog"),
+                "source_url": caf.metadata.get("abbreviations_url", ""),
+                "captured": caf.metadata.get("captured", ""),
+            },
+            "notice": "Baseline generated from Microsoft CAF recommendations. Supply a customer workbook to override; add a 'region' code set for your target regions.",
         },
         "normal_case": "lower",
         "code_sets": code_sets,
@@ -564,6 +733,9 @@ def render_report(policy: dict, report_rows: list[dict], warnings: list[str]) ->
     lines.append(f"- Rules generated: {len(policy['rules'])}")
     approved = sum(1 for r in policy["rules"].values() if r["status"] == "approved")
     lines.append(f"- Approved (enforced) rules: {approved}")
+    caf_rows = sum(1 for r in report_rows if r.get("caf_fallback"))
+    if caf_rows:
+        lines.append(f"- Rules using CAF fallback: {caf_rows}")
     lines.append("")
     if warnings:
         lines.append("## Warnings")
@@ -571,13 +743,14 @@ def render_report(policy: dict, report_rows: list[dict], warnings: list[str]) ->
         lines.append("")
     lines.append("## Rules")
     lines.append("")
-    lines.append("| Rule | Resource | Status | TF mapped | Source pattern | Notes |")
-    lines.append("| --- | --- | --- | --- | --- | --- |")
+    lines.append("| Rule | Resource | Status | TF mapped | CAF | Source pattern | Notes |")
+    lines.append("| --- | --- | --- | --- | --- | --- | --- |")
     for r in sorted(report_rows, key=lambda x: x["rule"]):
         notes = "; ".join(r["notes"]) if r["notes"] else ""
         tf = "yes" if r["terraform_mapped"] else "no"
+        caf = "yes" if r.get("caf_fallback") else ""
         lines.append(
-            f"| `{r['rule']}` | {r['resource']} | {r['status']} | {tf} | `{r['source_pattern']}` | {notes} |"
+            f"| `{r['rule']}` | {r['resource']} | {r['status']} | {tf} | {caf} | `{r['source_pattern']}` | {notes} |"
         )
     lines.append("")
     lines.append(
@@ -598,7 +771,7 @@ def main(argv: list[str] | None = None) -> int:
         prog="xlsx2policy",
         description="Compile a naming-convention workbook into policy.json (offline, stdlib only).",
     )
-    parser.add_argument("workbook", type=Path, help="Path to the naming .xlsx workbook.")
+    parser.add_argument("workbook", type=Path, nargs="?", help="Path to the naming .xlsx workbook.")
     parser.add_argument("--out", type=Path, default=Path("policy.json"), help="Output policy JSON path.")
     parser.add_argument("--report", type=Path, help="Optional Markdown conversion report path.")
     parser.add_argument(
@@ -606,9 +779,41 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="Exit non-zero if --out is missing or its embedded source hash is stale.",
     )
+    parser.add_argument(
+        "--caf-fallback",
+        action="store_true",
+        help="Fill missing abbreviations / Terraform types from the Microsoft CAF catalog.",
+    )
+    parser.add_argument(
+        "--caf-only",
+        action="store_true",
+        help="Generate a baseline policy from the CAF catalog alone (no workbook needed).",
+    )
+    parser.add_argument(
+        "--catalog",
+        type=Path,
+        help="Path to a CAF/abbreviation catalog JSON (defaults to catalogs/azure-caf.json).",
+    )
     parser.add_argument("--version", action="version", version=f"%(prog)s {VERSION}")
     args = parser.parse_args(argv)
 
+    # --- Standalone CAF baseline (no customer workbook) ---
+    if args.caf_only:
+        caf = load_caf_catalog(args.catalog)
+        if caf is None:
+            print(f"error: CAF catalog not found: {args.catalog or DEFAULT_CAF_PATH}", file=sys.stderr)
+            return 2
+        policy, report_rows, warnings = build_caf_policy(caf)
+        args.out.write_text(json.dumps(policy, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        print(f"Wrote {args.out} ({len(policy['rules'])} CAF rules, {len(policy['code_sets'])} code sets).")
+        if args.report:
+            args.report.write_text(render_report(policy, report_rows, warnings), encoding="utf-8")
+            print(f"Wrote {args.report}.")
+        return 0
+
+    if args.workbook is None:
+        print("error: a workbook is required (or use --caf-only).", file=sys.stderr)
+        return 2
     if not args.workbook.is_file():
         print(f"error: workbook not found: {args.workbook}", file=sys.stderr)
         return 2
@@ -619,7 +824,13 @@ def main(argv: list[str] | None = None) -> int:
         print(f"error: cannot read workbook ({exc}).", file=sys.stderr)
         return 2
 
-    policy, report_rows, warnings = build_policy(wb, args.workbook)
+    caf = None
+    if args.caf_fallback:
+        caf = load_caf_catalog(args.catalog)
+        if caf is None:
+            print(f"warning: CAF catalog not found ({args.catalog or DEFAULT_CAF_PATH}); fallback disabled.", file=sys.stderr)
+
+    policy, report_rows, warnings = build_policy(wb, args.workbook, caf)
 
     if args.check:
         if not args.out.is_file():

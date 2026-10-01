@@ -1,0 +1,1287 @@
+{
+  "metadata": {
+    "name": "Azure Cloud Adoption Framework (CAF) resource abbreviations",
+    "abbreviations_url": "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations",
+    "naming_url": "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming",
+    "ms_page_date": "2025-05-23",
+    "captured": "2026-10-01"
+  },
+  "component_order": [
+    "resource",
+    "workload",
+    "environment",
+    "region",
+    "instance"
+  ],
+  "delimiter": "-",
+  "default_code_sets": {
+    "environment": {
+      "prod": "prod",
+      "dev": "dev",
+      "qa": "qa",
+      "stage": "stage",
+      "test": "test"
+    }
+  },
+  "resources": [
+    {
+      "label": "AI Search",
+      "abbreviation": "srch",
+      "arm_namespace": "Microsoft.Search/searchServices",
+      "terraform_resource_types": [
+        "azurerm_search_service"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Foundry Tools (multi-service account)",
+      "abbreviation": "ais",
+      "arm_namespace": "Microsoft.CognitiveServices/accounts",
+      "terraform_resource_types": [
+        "azurerm_cognitive_account"
+      ]
+    },
+    {
+      "label": "Foundry account",
+      "abbreviation": "aif",
+      "arm_namespace": "Microsoft.CognitiveServices/accounts",
+      "terraform_resource_types": []
+    },
+    {
+      "label": "Foundry hub",
+      "abbreviation": "hub",
+      "arm_namespace": "Microsoft.MachineLearningServices/workspaces",
+      "terraform_resource_types": []
+    },
+    {
+      "label": "Azure AI Video Indexer",
+      "abbreviation": "avi",
+      "arm_namespace": "Microsoft.VideoIndexer/accounts",
+      "terraform_resource_types": []
+    },
+    {
+      "label": "Azure Machine Learning workspace",
+      "abbreviation": "mlw",
+      "arm_namespace": "Microsoft.MachineLearningServices/workspaces",
+      "terraform_resource_types": [
+        "azurerm_machine_learning_workspace"
+      ]
+    },
+    {
+      "label": "Azure OpenAI Service",
+      "abbreviation": "oai",
+      "arm_namespace": "Microsoft.CognitiveServices/accounts",
+      "terraform_resource_types": []
+    },
+    {
+      "label": "Bot service",
+      "abbreviation": "bot",
+      "arm_namespace": "Microsoft.BotService/botServices",
+      "terraform_resource_types": [
+        "azurerm_bot_service_azure_bot"
+      ]
+    },
+    {
+      "label": "Computer vision",
+      "abbreviation": "cv",
+      "arm_namespace": "Microsoft.CognitiveServices/accounts",
+      "terraform_resource_types": []
+    },
+    {
+      "label": "Content moderator",
+      "abbreviation": "cm",
+      "arm_namespace": "Microsoft.CognitiveServices/accounts",
+      "terraform_resource_types": []
+    },
+    {
+      "label": "Content safety",
+      "abbreviation": "cs",
+      "arm_namespace": "Microsoft.CognitiveServices/accounts",
+      "terraform_resource_types": []
+    },
+    {
+      "label": "Document intelligence",
+      "abbreviation": "di",
+      "arm_namespace": "Microsoft.CognitiveServices/accounts",
+      "terraform_resource_types": []
+    },
+    {
+      "label": "Face API",
+      "abbreviation": "face",
+      "arm_namespace": "Microsoft.CognitiveServices/accounts",
+      "terraform_resource_types": []
+    },
+    {
+      "label": "Health Insights",
+      "abbreviation": "hi",
+      "arm_namespace": "Microsoft.CognitiveServices/accounts",
+      "terraform_resource_types": []
+    },
+    {
+      "label": "Immersive reader",
+      "abbreviation": "ir",
+      "arm_namespace": "Microsoft.CognitiveServices/accounts",
+      "terraform_resource_types": []
+    },
+    {
+      "label": "Language service",
+      "abbreviation": "lang",
+      "arm_namespace": "Microsoft.CognitiveServices/accounts",
+      "terraform_resource_types": []
+    },
+    {
+      "label": "Speech service",
+      "abbreviation": "spch",
+      "arm_namespace": "Microsoft.CognitiveServices/accounts",
+      "terraform_resource_types": []
+    },
+    {
+      "label": "Translator",
+      "abbreviation": "trsl",
+      "arm_namespace": "Microsoft.CognitiveServices/accounts",
+      "terraform_resource_types": []
+    },
+    {
+      "label": "Azure Analysis Services server",
+      "abbreviation": "as",
+      "arm_namespace": "Microsoft.AnalysisServices/servers",
+      "terraform_resource_types": [
+        "azurerm_analysis_services_server"
+      ]
+    },
+    {
+      "label": "Azure Databricks workspace",
+      "abbreviation": "dbw",
+      "arm_namespace": "Microsoft.Databricks/workspaces",
+      "terraform_resource_types": [
+        "azurerm_databricks_workspace"
+      ]
+    },
+    {
+      "label": "Azure Data Explorer cluster",
+      "abbreviation": "dec",
+      "arm_namespace": "Microsoft.Kusto/clusters",
+      "terraform_resource_types": [
+        "azurerm_kusto_cluster"
+      ]
+    },
+    {
+      "label": "Azure Data Explorer cluster database",
+      "abbreviation": "dedb",
+      "arm_namespace": "Microsoft.Kusto/clusters/databases",
+      "terraform_resource_types": [
+        "azurerm_kusto_database"
+      ]
+    },
+    {
+      "label": "Azure Data Factory",
+      "abbreviation": "adf",
+      "arm_namespace": "Microsoft.DataFactory/factories",
+      "terraform_resource_types": [
+        "azurerm_data_factory"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Azure Digital Twin instance",
+      "abbreviation": "dt",
+      "arm_namespace": "Microsoft.DigitalTwins/digitalTwinsInstances",
+      "terraform_resource_types": [
+        "azurerm_digital_twins_instance"
+      ]
+    },
+    {
+      "label": "Azure Stream Analytics",
+      "abbreviation": "asa",
+      "arm_namespace": "Microsoft.StreamAnalytics/cluster",
+      "terraform_resource_types": [
+        "azurerm_stream_analytics_cluster"
+      ]
+    },
+    {
+      "label": "Azure Synapse Analytics SQL Dedicated Pool",
+      "abbreviation": "syndp",
+      "arm_namespace": "Microsoft.Synapse/workspaces/sqlPools",
+      "terraform_resource_types": [
+        "azurerm_synapse_sql_pool"
+      ]
+    },
+    {
+      "label": "Azure Synapse Analytics Spark Pool",
+      "abbreviation": "synsp",
+      "arm_namespace": "Microsoft.Synapse/workspaces/bigDataPools",
+      "terraform_resource_types": [
+        "azurerm_synapse_spark_pool"
+      ]
+    },
+    {
+      "label": "Azure Synapse Analytics workspaces",
+      "abbreviation": "synw",
+      "arm_namespace": "Microsoft.Synapse/workspaces",
+      "terraform_resource_types": [
+        "azurerm_synapse_workspace"
+      ]
+    },
+    {
+      "label": "Data Lake Store account",
+      "abbreviation": "dls",
+      "arm_namespace": "Microsoft.DataLakeStore/accounts",
+      "terraform_resource_types": [
+        "azurerm_data_lake_store"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Event Hubs namespace",
+      "abbreviation": "evhns",
+      "arm_namespace": "Microsoft.EventHub/namespaces",
+      "terraform_resource_types": [
+        "azurerm_eventhub_namespace"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Event hub",
+      "abbreviation": "evh",
+      "arm_namespace": "Microsoft.EventHub/namespaces/eventHubs",
+      "terraform_resource_types": [
+        "azurerm_eventhub"
+      ]
+    },
+    {
+      "label": "Event hub consumer group",
+      "abbreviation": "evhcg",
+      "arm_namespace": "Microsoft.EventHub/namespaces/eventhubs/consumerGroups",
+      "terraform_resource_types": [
+        "azurerm_eventhub_consumer_group"
+      ]
+    },
+    {
+      "label": "Event Grid domain",
+      "abbreviation": "evgd",
+      "arm_namespace": "Microsoft.EventGrid/domains",
+      "terraform_resource_types": [
+        "azurerm_eventgrid_domain"
+      ]
+    },
+    {
+      "label": "Event Grid subscriptions",
+      "abbreviation": "evgs",
+      "arm_namespace": "Microsoft.EventGrid/eventSubscriptions",
+      "terraform_resource_types": [
+        "azurerm_eventgrid_event_subscription"
+      ]
+    },
+    {
+      "label": "Event Grid topic",
+      "abbreviation": "evgt",
+      "arm_namespace": "Microsoft.EventGrid/domains/topics",
+      "terraform_resource_types": [
+        "azurerm_eventgrid_domain_topic"
+      ]
+    },
+    {
+      "label": "Event Grid system topic",
+      "abbreviation": "egst",
+      "arm_namespace": "Microsoft.EventGrid/systemTopics",
+      "terraform_resource_types": [
+        "azurerm_eventgrid_system_topic"
+      ]
+    },
+    {
+      "label": "HDInsight - Hadoop cluster",
+      "abbreviation": "hadoop",
+      "arm_namespace": "Microsoft.HDInsight/clusters",
+      "terraform_resource_types": [
+        "azurerm_hdinsight_hadoop_cluster"
+      ]
+    },
+    {
+      "label": "HDInsight - HBase cluster",
+      "abbreviation": "hbase",
+      "arm_namespace": "Microsoft.HDInsight/clusters",
+      "terraform_resource_types": [
+        "azurerm_hdinsight_hbase_cluster"
+      ]
+    },
+    {
+      "label": "HDInsight - Kafka cluster",
+      "abbreviation": "kafka",
+      "arm_namespace": "Microsoft.HDInsight/clusters",
+      "terraform_resource_types": [
+        "azurerm_hdinsight_kafka_cluster"
+      ]
+    },
+    {
+      "label": "HDInsight - Spark cluster",
+      "abbreviation": "spark",
+      "arm_namespace": "Microsoft.HDInsight/clusters",
+      "terraform_resource_types": [
+        "azurerm_hdinsight_spark_cluster"
+      ]
+    },
+    {
+      "label": "IoT hub",
+      "abbreviation": "iot",
+      "arm_namespace": "Microsoft.Devices/IotHubs",
+      "terraform_resource_types": [
+        "azurerm_iothub"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Provisioning services",
+      "abbreviation": "provs",
+      "arm_namespace": "Microsoft.Devices/provisioningServices",
+      "terraform_resource_types": [
+        "azurerm_iothub_dps"
+      ]
+    },
+    {
+      "label": "Power BI Embedded",
+      "abbreviation": "pbi",
+      "arm_namespace": "Microsoft.PowerBIDedicated/capacities",
+      "terraform_resource_types": [
+        "azurerm_powerbi_embedded"
+      ]
+    },
+    {
+      "label": "Time Series Insights environment",
+      "abbreviation": "tsi",
+      "arm_namespace": "Microsoft.TimeSeriesInsights/environments",
+      "terraform_resource_types": [
+        "azurerm_iot_time_series_insights_gen2_environment"
+      ]
+    },
+    {
+      "label": "App Service environment",
+      "abbreviation": "ase",
+      "arm_namespace": "Microsoft.Web/hostingEnvironments",
+      "terraform_resource_types": [
+        "azurerm_app_service_environment_v3"
+      ]
+    },
+    {
+      "label": "App Service plan",
+      "abbreviation": "asp",
+      "arm_namespace": "Microsoft.Web/serverFarms",
+      "terraform_resource_types": [
+        "azurerm_service_plan"
+      ]
+    },
+    {
+      "label": "Azure Load Testing instance",
+      "abbreviation": "lt",
+      "arm_namespace": "Microsoft.LoadTestService/loadTests",
+      "terraform_resource_types": [
+        "azurerm_load_test"
+      ]
+    },
+    {
+      "label": "Availability set",
+      "abbreviation": "avail",
+      "arm_namespace": "Microsoft.Compute/availabilitySets",
+      "terraform_resource_types": [
+        "azurerm_availability_set"
+      ]
+    },
+    {
+      "label": "Azure Arc enabled server",
+      "abbreviation": "arcs",
+      "arm_namespace": "Microsoft.HybridCompute/machines",
+      "terraform_resource_types": []
+    },
+    {
+      "label": "Azure Arc enabled Kubernetes cluster",
+      "abbreviation": "arck",
+      "arm_namespace": "Microsoft.Kubernetes/connectedClusters",
+      "terraform_resource_types": []
+    },
+    {
+      "label": "Batch accounts",
+      "abbreviation": "ba",
+      "arm_namespace": "Microsoft.Batch/batchAccounts",
+      "terraform_resource_types": [
+        "azurerm_batch_account"
+      ]
+    },
+    {
+      "label": "Communication Services",
+      "abbreviation": "acs",
+      "arm_namespace": "Microsoft.Communication/communicationServices",
+      "terraform_resource_types": [
+        "azurerm_communication_service"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Disk encryption set",
+      "abbreviation": "des",
+      "arm_namespace": "Microsoft.Compute/diskEncryptionSets",
+      "terraform_resource_types": [
+        "azurerm_disk_encryption_set"
+      ]
+    },
+    {
+      "label": "Function app",
+      "abbreviation": "func",
+      "arm_namespace": "Microsoft.Web/sites",
+      "terraform_resource_types": [
+        "azurerm_linux_function_app",
+        "azurerm_windows_function_app"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Gallery",
+      "abbreviation": "gal",
+      "arm_namespace": "Microsoft.Compute/galleries",
+      "terraform_resource_types": [
+        "azurerm_shared_image_gallery"
+      ]
+    },
+    {
+      "label": "Managed disk (data)",
+      "abbreviation": "disk",
+      "arm_namespace": "Microsoft.Compute/disks",
+      "terraform_resource_types": [
+        "azurerm_managed_disk"
+      ]
+    },
+    {
+      "label": "Notification Hubs",
+      "abbreviation": "ntf",
+      "arm_namespace": "Microsoft.NotificationHubs/namespaces/notificationHubs",
+      "terraform_resource_types": [
+        "azurerm_notification_hub"
+      ]
+    },
+    {
+      "label": "Notification Hubs namespace",
+      "abbreviation": "ntfns",
+      "arm_namespace": "Microsoft.NotificationHubs/namespaces",
+      "terraform_resource_types": [
+        "azurerm_notification_hub_namespace"
+      ]
+    },
+    {
+      "label": "Proximity placement group",
+      "abbreviation": "ppg",
+      "arm_namespace": "Microsoft.Compute/proximityPlacementGroups",
+      "terraform_resource_types": [
+        "azurerm_proximity_placement_group"
+      ]
+    },
+    {
+      "label": "Snapshot",
+      "abbreviation": "snap",
+      "arm_namespace": "Microsoft.Compute/snapshots",
+      "terraform_resource_types": [
+        "azurerm_snapshot"
+      ]
+    },
+    {
+      "label": "Static web app",
+      "abbreviation": "stapp",
+      "arm_namespace": "Microsoft.Web/staticSites",
+      "terraform_resource_types": [
+        "azurerm_static_web_app"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Virtual machine",
+      "abbreviation": "vm",
+      "arm_namespace": "Microsoft.Compute/virtualMachines",
+      "terraform_resource_types": [
+        "azurerm_linux_virtual_machine",
+        "azurerm_windows_virtual_machine"
+      ],
+      "uniqueness_scope": "resource_group"
+    },
+    {
+      "label": "Virtual machine scale set",
+      "abbreviation": "vmss",
+      "arm_namespace": "Microsoft.Compute/virtualMachineScaleSets",
+      "terraform_resource_types": [
+        "azurerm_linux_virtual_machine_scale_set",
+        "azurerm_windows_virtual_machine_scale_set"
+      ]
+    },
+    {
+      "label": "Web app",
+      "abbreviation": "app",
+      "arm_namespace": "Microsoft.Web/sites",
+      "terraform_resource_types": [
+        "azurerm_linux_web_app",
+        "azurerm_windows_web_app"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "AKS cluster",
+      "abbreviation": "aks",
+      "arm_namespace": "Microsoft.ContainerService/managedClusters",
+      "terraform_resource_types": [
+        "azurerm_kubernetes_cluster"
+      ]
+    },
+    {
+      "label": "AKS user node pool",
+      "abbreviation": "np",
+      "arm_namespace": "Microsoft.ContainerService/managedClusters/agentPools",
+      "terraform_resource_types": [
+        "azurerm_kubernetes_cluster_node_pool"
+      ]
+    },
+    {
+      "label": "Container apps",
+      "abbreviation": "ca",
+      "arm_namespace": "Microsoft.App/containerApps",
+      "terraform_resource_types": [
+        "azurerm_container_app"
+      ]
+    },
+    {
+      "label": "Container apps environment",
+      "abbreviation": "cae",
+      "arm_namespace": "Microsoft.App/managedEnvironments",
+      "terraform_resource_types": [
+        "azurerm_container_app_environment"
+      ]
+    },
+    {
+      "label": "Container registry",
+      "abbreviation": "cr",
+      "arm_namespace": "Microsoft.ContainerRegistry/registries",
+      "terraform_resource_types": [
+        "azurerm_container_registry"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Container instance",
+      "abbreviation": "ci",
+      "arm_namespace": "Microsoft.ContainerInstance/containerGroups",
+      "terraform_resource_types": [
+        "azurerm_container_group"
+      ]
+    },
+    {
+      "label": "Service Fabric cluster",
+      "abbreviation": "sf",
+      "arm_namespace": "Microsoft.ServiceFabric/clusters",
+      "terraform_resource_types": [
+        "azurerm_service_fabric_cluster"
+      ]
+    },
+    {
+      "label": "Azure Cosmos DB database",
+      "abbreviation": "cosmos",
+      "arm_namespace": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
+      "terraform_resource_types": [
+        "azurerm_cosmosdb_account"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Azure Managed Redis",
+      "abbreviation": "amr",
+      "arm_namespace": "Microsoft.Cache/RedisEnterprise",
+      "terraform_resource_types": [
+        "azurerm_redis_enterprise_cluster"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Azure SQL Database server",
+      "abbreviation": "sql",
+      "arm_namespace": "Microsoft.Sql/servers",
+      "terraform_resource_types": [
+        "azurerm_mssql_server"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Azure SQL database",
+      "abbreviation": "sqldb",
+      "arm_namespace": "Microsoft.Sql/servers/databases",
+      "terraform_resource_types": [
+        "azurerm_mssql_database"
+      ]
+    },
+    {
+      "label": "Azure SQL Elastic Pool",
+      "abbreviation": "sqlep",
+      "arm_namespace": "Microsoft.Sql/servers/elasticpool",
+      "terraform_resource_types": [
+        "azurerm_mssql_elasticpool"
+      ]
+    },
+    {
+      "label": "MySQL database",
+      "abbreviation": "mysql",
+      "arm_namespace": "Microsoft.DBforMySQL/servers",
+      "terraform_resource_types": [
+        "azurerm_mysql_flexible_server"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "PostgreSQL flexible server",
+      "abbreviation": "pgsql",
+      "arm_namespace": "Microsoft.DBforPostgreSQL/flexibleServers",
+      "terraform_resource_types": [
+        "azurerm_postgresql_flexible_server"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "SQL Managed Instance",
+      "abbreviation": "sqlmi",
+      "arm_namespace": "Microsoft.Sql/managedInstances",
+      "terraform_resource_types": [
+        "azurerm_mssql_managed_instance"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "App Configuration store",
+      "abbreviation": "appcs",
+      "arm_namespace": "Microsoft.AppConfiguration/configurationStores",
+      "terraform_resource_types": [
+        "azurerm_app_configuration"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Maps account",
+      "abbreviation": "map",
+      "arm_namespace": "Microsoft.Maps/accounts",
+      "terraform_resource_types": [
+        "azurerm_maps_account"
+      ]
+    },
+    {
+      "label": "SignalR",
+      "abbreviation": "sigr",
+      "arm_namespace": "Microsoft.SignalRService/SignalR",
+      "terraform_resource_types": [
+        "azurerm_signalr_service"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "WebPubSub",
+      "abbreviation": "wps",
+      "arm_namespace": "Microsoft.SignalRService/webPubSub",
+      "terraform_resource_types": [
+        "azurerm_web_pubsub"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Azure Managed Grafana",
+      "abbreviation": "amg",
+      "arm_namespace": "Microsoft.Dashboard/grafana",
+      "terraform_resource_types": [
+        "azurerm_dashboard_grafana"
+      ]
+    },
+    {
+      "label": "API management service instance",
+      "abbreviation": "apim",
+      "arm_namespace": "Microsoft.ApiManagement/service",
+      "terraform_resource_types": [
+        "azurerm_api_management"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Integration account",
+      "abbreviation": "ia",
+      "arm_namespace": "Microsoft.Logic/integrationAccounts",
+      "terraform_resource_types": [
+        "azurerm_logic_app_integration_account"
+      ]
+    },
+    {
+      "label": "Logic app",
+      "abbreviation": "logic",
+      "arm_namespace": "Microsoft.Logic/workflows",
+      "terraform_resource_types": [
+        "azurerm_logic_app_workflow"
+      ]
+    },
+    {
+      "label": "Service Bus namespace",
+      "abbreviation": "sbns",
+      "arm_namespace": "Microsoft.ServiceBus/namespaces",
+      "terraform_resource_types": [
+        "azurerm_servicebus_namespace"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Service Bus queue",
+      "abbreviation": "sbq",
+      "arm_namespace": "Microsoft.ServiceBus/namespaces/queues",
+      "terraform_resource_types": [
+        "azurerm_servicebus_queue"
+      ]
+    },
+    {
+      "label": "Service Bus topic",
+      "abbreviation": "sbt",
+      "arm_namespace": "Microsoft.ServiceBus/namespaces/topics",
+      "terraform_resource_types": [
+        "azurerm_servicebus_topic"
+      ]
+    },
+    {
+      "label": "Service Bus topic subscription",
+      "abbreviation": "sbts",
+      "arm_namespace": "Microsoft.ServiceBus/namespaces/topics/subscriptions",
+      "terraform_resource_types": [
+        "azurerm_servicebus_subscription"
+      ]
+    },
+    {
+      "label": "Automation account",
+      "abbreviation": "aa",
+      "arm_namespace": "Microsoft.Automation/automationAccounts",
+      "terraform_resource_types": [
+        "azurerm_automation_account"
+      ]
+    },
+    {
+      "label": "Application Insights",
+      "abbreviation": "appi",
+      "arm_namespace": "Microsoft.Insights/components",
+      "terraform_resource_types": [
+        "azurerm_application_insights"
+      ]
+    },
+    {
+      "label": "Azure Monitor action group",
+      "abbreviation": "ag",
+      "arm_namespace": "Microsoft.Insights/actionGroups",
+      "terraform_resource_types": [
+        "azurerm_monitor_action_group"
+      ]
+    },
+    {
+      "label": "Azure Monitor data collection rule",
+      "abbreviation": "dcr",
+      "arm_namespace": "Microsoft.Insights/dataCollectionRules",
+      "terraform_resource_types": [
+        "azurerm_monitor_data_collection_rule"
+      ]
+    },
+    {
+      "label": "Data collection endpoint",
+      "abbreviation": "dce",
+      "arm_namespace": "Microsoft.Insights/dataCollectionEndpoints",
+      "terraform_resource_types": [
+        "azurerm_monitor_data_collection_endpoint"
+      ]
+    },
+    {
+      "label": "Log Analytics workspace",
+      "abbreviation": "log",
+      "arm_namespace": "Microsoft.OperationalInsights/workspaces",
+      "terraform_resource_types": [
+        "azurerm_log_analytics_workspace"
+      ]
+    },
+    {
+      "label": "Log Analytics query packs",
+      "abbreviation": "pack",
+      "arm_namespace": "Microsoft.OperationalInsights/querypacks",
+      "terraform_resource_types": [
+        "azurerm_log_analytics_query_pack"
+      ]
+    },
+    {
+      "label": "Management group",
+      "abbreviation": "mg",
+      "arm_namespace": "Microsoft.Management/managementGroups",
+      "terraform_resource_types": [
+        "azurerm_management_group"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Microsoft Purview instance",
+      "abbreviation": "pview",
+      "arm_namespace": "Microsoft.Purview/accounts",
+      "terraform_resource_types": [
+        "azurerm_purview_account"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Resource group",
+      "abbreviation": "rg",
+      "arm_namespace": "Microsoft.Resources/resourceGroups",
+      "terraform_resource_types": [
+        "azurerm_resource_group"
+      ]
+    },
+    {
+      "label": "Template specs name",
+      "abbreviation": "ts",
+      "arm_namespace": "Microsoft.Resources/templateSpecs",
+      "terraform_resource_types": [
+        "azurerm_resource_group_template_deployment"
+      ]
+    },
+    {
+      "label": "Database Migration Service instance",
+      "abbreviation": "dms",
+      "arm_namespace": "Microsoft.DataMigration/services",
+      "terraform_resource_types": [
+        "azurerm_database_migration_service"
+      ]
+    },
+    {
+      "label": "Recovery Services vault",
+      "abbreviation": "rsv",
+      "arm_namespace": "Microsoft.RecoveryServices/vaults",
+      "terraform_resource_types": [
+        "azurerm_recovery_services_vault"
+      ]
+    },
+    {
+      "label": "Application gateway",
+      "abbreviation": "agw",
+      "arm_namespace": "Microsoft.Network/applicationGateways",
+      "terraform_resource_types": [
+        "azurerm_application_gateway"
+      ]
+    },
+    {
+      "label": "Application security group (ASG)",
+      "abbreviation": "asg",
+      "arm_namespace": "Microsoft.Network/applicationSecurityGroups",
+      "terraform_resource_types": [
+        "azurerm_application_security_group"
+      ]
+    },
+    {
+      "label": "CDN profile",
+      "abbreviation": "cdnp",
+      "arm_namespace": "Microsoft.Cdn/profiles",
+      "terraform_resource_types": [
+        "azurerm_cdn_profile"
+      ]
+    },
+    {
+      "label": "CDN endpoint",
+      "abbreviation": "cdne",
+      "arm_namespace": "Microsoft.Cdn/profiles/endpoints",
+      "terraform_resource_types": [
+        "azurerm_cdn_endpoint"
+      ]
+    },
+    {
+      "label": "Connections",
+      "abbreviation": "con",
+      "arm_namespace": "Microsoft.Network/connections",
+      "terraform_resource_types": [
+        "azurerm_virtual_network_gateway_connection"
+      ]
+    },
+    {
+      "label": "DNS forwarding ruleset",
+      "abbreviation": "dnsfrs",
+      "arm_namespace": "Microsoft.Network/dnsForwardingRulesets",
+      "terraform_resource_types": [
+        "azurerm_private_dns_resolver_dns_forwarding_ruleset"
+      ]
+    },
+    {
+      "label": "DNS private resolver",
+      "abbreviation": "dnspr",
+      "arm_namespace": "Microsoft.Network/dnsResolvers",
+      "terraform_resource_types": [
+        "azurerm_private_dns_resolver"
+      ]
+    },
+    {
+      "label": "Firewall",
+      "abbreviation": "afw",
+      "arm_namespace": "Microsoft.Network/azureFirewalls",
+      "terraform_resource_types": [
+        "azurerm_firewall"
+      ]
+    },
+    {
+      "label": "Firewall policy",
+      "abbreviation": "afwp",
+      "arm_namespace": "Microsoft.Network/firewallPolicies",
+      "terraform_resource_types": [
+        "azurerm_firewall_policy"
+      ]
+    },
+    {
+      "label": "ExpressRoute circuit",
+      "abbreviation": "erc",
+      "arm_namespace": "Microsoft.Network/expressRouteCircuits",
+      "terraform_resource_types": [
+        "azurerm_express_route_circuit"
+      ]
+    },
+    {
+      "label": "ExpressRoute gateway",
+      "abbreviation": "ergw",
+      "arm_namespace": "Microsoft.Network/virtualNetworkGateways",
+      "terraform_resource_types": [
+        "azurerm_express_route_gateway"
+      ]
+    },
+    {
+      "label": "Front Door (Standard/Premium) profile",
+      "abbreviation": "afd",
+      "arm_namespace": "Microsoft.Cdn/profiles",
+      "terraform_resource_types": [
+        "azurerm_cdn_frontdoor_profile"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Front Door (Standard/Premium) endpoint",
+      "abbreviation": "fde",
+      "arm_namespace": "Microsoft.Cdn/profiles/afdEndpoints",
+      "terraform_resource_types": [
+        "azurerm_cdn_frontdoor_endpoint"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Front Door firewall policy",
+      "abbreviation": "fdfp",
+      "arm_namespace": "Microsoft.Network/frontdoorWebApplicationFirewallPolicies",
+      "terraform_resource_types": [
+        "azurerm_cdn_frontdoor_firewall_policy"
+      ]
+    },
+    {
+      "label": "IP group",
+      "abbreviation": "ipg",
+      "arm_namespace": "Microsoft.Network/ipGroups",
+      "terraform_resource_types": [
+        "azurerm_ip_group"
+      ]
+    },
+    {
+      "label": "Load balancer (internal)",
+      "abbreviation": "lbi",
+      "arm_namespace": "Microsoft.Network/loadBalancers",
+      "terraform_resource_types": [
+        "azurerm_lb"
+      ]
+    },
+    {
+      "label": "Load balancer (external)",
+      "abbreviation": "lbe",
+      "arm_namespace": "Microsoft.Network/loadBalancers",
+      "terraform_resource_types": [
+        "azurerm_lb"
+      ]
+    },
+    {
+      "label": "Local network gateway",
+      "abbreviation": "lgw",
+      "arm_namespace": "Microsoft.Network/localNetworkGateways",
+      "terraform_resource_types": [
+        "azurerm_local_network_gateway"
+      ]
+    },
+    {
+      "label": "NAT gateway",
+      "abbreviation": "ng",
+      "arm_namespace": "Microsoft.Network/natGateways",
+      "terraform_resource_types": [
+        "azurerm_nat_gateway"
+      ]
+    },
+    {
+      "label": "Network interface (NIC)",
+      "abbreviation": "nic",
+      "arm_namespace": "Microsoft.Network/networkInterfaces",
+      "terraform_resource_types": [
+        "azurerm_network_interface"
+      ]
+    },
+    {
+      "label": "Network security group (NSG)",
+      "abbreviation": "nsg",
+      "arm_namespace": "Microsoft.Network/networkSecurityGroups",
+      "terraform_resource_types": [
+        "azurerm_network_security_group"
+      ]
+    },
+    {
+      "label": "Network Watcher",
+      "abbreviation": "nw",
+      "arm_namespace": "Microsoft.Network/networkWatchers",
+      "terraform_resource_types": [
+        "azurerm_network_watcher"
+      ]
+    },
+    {
+      "label": "Private Link",
+      "abbreviation": "pl",
+      "arm_namespace": "Microsoft.Network/privateLinkServices",
+      "terraform_resource_types": [
+        "azurerm_private_link_service"
+      ]
+    },
+    {
+      "label": "Private endpoint",
+      "abbreviation": "pep",
+      "arm_namespace": "Microsoft.Network/privateEndpoints",
+      "terraform_resource_types": [
+        "azurerm_private_endpoint"
+      ]
+    },
+    {
+      "label": "Public IP address",
+      "abbreviation": "pip",
+      "arm_namespace": "Microsoft.Network/publicIPAddresses",
+      "terraform_resource_types": [
+        "azurerm_public_ip"
+      ]
+    },
+    {
+      "label": "Public IP address prefix",
+      "abbreviation": "ippre",
+      "arm_namespace": "Microsoft.Network/publicIPPrefixes",
+      "terraform_resource_types": [
+        "azurerm_public_ip_prefix"
+      ]
+    },
+    {
+      "label": "Route filter",
+      "abbreviation": "rf",
+      "arm_namespace": "Microsoft.Network/routeFilters",
+      "terraform_resource_types": [
+        "azurerm_route_filter"
+      ]
+    },
+    {
+      "label": "Route table",
+      "abbreviation": "rt",
+      "arm_namespace": "Microsoft.Network/routeTables",
+      "terraform_resource_types": [
+        "azurerm_route_table"
+      ]
+    },
+    {
+      "label": "Traffic Manager profile",
+      "abbreviation": "traf",
+      "arm_namespace": "Microsoft.Network/trafficManagerProfiles",
+      "terraform_resource_types": [
+        "azurerm_traffic_manager_profile"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "User defined route (UDR)",
+      "abbreviation": "udr",
+      "arm_namespace": "Microsoft.Network/routeTables/routes",
+      "terraform_resource_types": [
+        "azurerm_route"
+      ]
+    },
+    {
+      "label": "Virtual network",
+      "abbreviation": "vnet",
+      "arm_namespace": "Microsoft.Network/virtualNetworks",
+      "terraform_resource_types": [
+        "azurerm_virtual_network"
+      ],
+      "uniqueness_scope": "resource_group"
+    },
+    {
+      "label": "Virtual network gateway",
+      "abbreviation": "vgw",
+      "arm_namespace": "Microsoft.Network/virtualNetworkGateways",
+      "terraform_resource_types": [
+        "azurerm_virtual_network_gateway"
+      ]
+    },
+    {
+      "label": "Virtual network manager",
+      "abbreviation": "vnm",
+      "arm_namespace": "Microsoft.Network/networkManagers",
+      "terraform_resource_types": [
+        "azurerm_network_manager"
+      ]
+    },
+    {
+      "label": "Virtual network peering",
+      "abbreviation": "peer",
+      "arm_namespace": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+      "terraform_resource_types": [
+        "azurerm_virtual_network_peering"
+      ]
+    },
+    {
+      "label": "Virtual network subnet",
+      "abbreviation": "snet",
+      "arm_namespace": "Microsoft.Network/virtualNetworks/subnets",
+      "terraform_resource_types": [
+        "azurerm_subnet"
+      ]
+    },
+    {
+      "label": "Virtual WAN",
+      "abbreviation": "vwan",
+      "arm_namespace": "Microsoft.Network/virtualWans",
+      "terraform_resource_types": [
+        "azurerm_virtual_wan"
+      ]
+    },
+    {
+      "label": "Virtual WAN Hub",
+      "abbreviation": "vhub",
+      "arm_namespace": "Microsoft.Network/virtualHubs",
+      "terraform_resource_types": [
+        "azurerm_virtual_hub"
+      ]
+    },
+    {
+      "label": "Azure Bastion",
+      "abbreviation": "bas",
+      "arm_namespace": "Microsoft.Network/bastionHosts",
+      "terraform_resource_types": [
+        "azurerm_bastion_host"
+      ]
+    },
+    {
+      "label": "Key vault",
+      "abbreviation": "kv",
+      "arm_namespace": "Microsoft.KeyVault/vaults",
+      "terraform_resource_types": [
+        "azurerm_key_vault"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Key Vault Managed HSM",
+      "abbreviation": "kvmhsm",
+      "arm_namespace": "Microsoft.KeyVault/managedHSMs",
+      "terraform_resource_types": [
+        "azurerm_key_vault_managed_hardware_security_module"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Managed identity",
+      "abbreviation": "id",
+      "arm_namespace": "Microsoft.ManagedIdentity/userAssignedIdentities",
+      "terraform_resource_types": [
+        "azurerm_user_assigned_identity"
+      ]
+    },
+    {
+      "label": "SSH key",
+      "abbreviation": "sshkey",
+      "arm_namespace": "Microsoft.Compute/sshPublicKeys",
+      "terraform_resource_types": [
+        "azurerm_ssh_public_key"
+      ]
+    },
+    {
+      "label": "VPN Gateway",
+      "abbreviation": "vpng",
+      "arm_namespace": "Microsoft.Network/vpnGateways",
+      "terraform_resource_types": [
+        "azurerm_vpn_gateway"
+      ]
+    },
+    {
+      "label": "VPN site",
+      "abbreviation": "vst",
+      "arm_namespace": "Microsoft.Network/vpnGateways/vpnSites",
+      "terraform_resource_types": [
+        "azurerm_vpn_site"
+      ]
+    },
+    {
+      "label": "Web Application Firewall (WAF) policy",
+      "abbreviation": "waf",
+      "arm_namespace": "Microsoft.Network/firewallPolicies",
+      "terraform_resource_types": [
+        "azurerm_web_application_firewall_policy"
+      ]
+    },
+    {
+      "label": "Backup Vault name",
+      "abbreviation": "bvault",
+      "arm_namespace": "Microsoft.DataProtection/backupVaults",
+      "terraform_resource_types": [
+        "azurerm_data_protection_backup_vault"
+      ]
+    },
+    {
+      "label": "File share",
+      "abbreviation": "share",
+      "arm_namespace": "Microsoft.Storage/storageAccounts/fileServices/shares",
+      "terraform_resource_types": [
+        "azurerm_storage_share"
+      ]
+    },
+    {
+      "label": "Storage account",
+      "abbreviation": "st",
+      "arm_namespace": "Microsoft.Storage/storageAccounts",
+      "terraform_resource_types": [
+        "azurerm_storage_account"
+      ],
+      "uniqueness_scope": "global"
+    },
+    {
+      "label": "Storage Sync Service name",
+      "abbreviation": "sss",
+      "arm_namespace": "Microsoft.StorageSync/storageSyncServices",
+      "terraform_resource_types": [
+        "azurerm_storage_sync"
+      ]
+    },
+    {
+      "label": "Virtual desktop host pool",
+      "abbreviation": "vdpool",
+      "arm_namespace": "Microsoft.DesktopVirtualization/hostPools",
+      "terraform_resource_types": [
+        "azurerm_virtual_desktop_host_pool"
+      ]
+    },
+    {
+      "label": "Virtual desktop application group",
+      "abbreviation": "vdag",
+      "arm_namespace": "Microsoft.DesktopVirtualization/applicationGroups",
+      "terraform_resource_types": [
+        "azurerm_virtual_desktop_application_group"
+      ]
+    },
+    {
+      "label": "Virtual desktop workspace",
+      "abbreviation": "vdws",
+      "arm_namespace": "Microsoft.DesktopVirtualization/workspaces",
+      "terraform_resource_types": [
+        "azurerm_virtual_desktop_workspace"
+      ]
+    },
+    {
+      "label": "Virtual desktop scaling plan",
+      "abbreviation": "vdscaling",
+      "arm_namespace": "Microsoft.DesktopVirtualization/scalingPlans",
+      "terraform_resource_types": [
+        "azurerm_virtual_desktop_scaling_plan"
+      ]
+    }
+  ]
+}

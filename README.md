@@ -45,14 +45,48 @@ python .\examples\excel\make_sample_workbook.py .\examples\excel\sample-naming.x
 python .\xlsx2policy.py .\examples\excel\sample-naming.xlsx --out .\examples\excel\policy.json --report .\examples\excel\conversion-report.md
 ```
 
+## Microsoft CAF fallback
+
+When a customer has **not** defined their own abbreviation for a resource, the
+converter can fall back to Microsoft's
+[Cloud Adoption Framework (CAF)](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations)
+recommendations. The customer workbook always wins; CAF only fills the gaps.
+
+```powershell
+# Fill missing abbreviations / Terraform mappings from CAF while converting:
+python .\xlsx2policy.py C:\customer\NamingConvention.xlsx --out .\policy.json --report .\report.md --caf-fallback
+```
+
+Any rule that used a CAF value is flagged in the report's `CAF` column and noted
+in `metadata.caf_fallback`, so the fallback is always auditable.
+
+If a team has **no workbook at all**, generate a compliant Microsoft baseline
+directly from the bundled catalog - usable by anyone:
+
+```powershell
+python .\xlsx2policy.py --caf-only --out .\policy.json --report .\report.md
+```
+
+This emits a rule per catalogued resource using CAF's recommended component order
+(`resource-workload-environment-region-instance`), e.g. `afw-hub-prod-cnc-01`,
+`st-app-prod-cnc-01`, `vnet-shared-prod-eus2-001`. Add a `region` code set for
+your target regions, then override any rule with a customer workbook later. A
+ready-made baseline lives in `examples/caf/`. The catalog itself is generated
+from `catalogs/build_caf_catalog.py` (offline, stdlib only); re-run it to refresh
+from Microsoft Learn.
+
 ## Package layout
 
 - `xlsx2policy.py`: Offline converter that compiles the naming workbook (.xlsx)
-  into `policy.json`. The workbook is the source of truth.
+  into `policy.json`. The workbook is the source of truth; `--caf-fallback` and
+  `--caf-only` draw on the Microsoft CAF catalog.
+- `catalogs/`: Microsoft CAF abbreviation catalog (`azure-caf.json`) and its
+  generator `build_caf_catalog.py`.
 - `module/`: Provider-independent Terraform naming module.
 - `policies/example/`: Synthetic example policy showing the expected schema.
 - `examples/excel/`: Synthetic sample workbook, its generator, and the converted
   policy + report.
+- `examples/caf/`: CAF baseline policy + report generated with `--caf-only`.
 - `examples/batch/`: Batch generation example driven by JSON requests.
 - `namingctl.py`: Single-file, standard-library CLI for offline planning and
   safe literal-name updates.
@@ -132,15 +166,17 @@ terraform -chdir=examples\batch plan -input=false
 
 1. Obtain the customer's approved naming workbook (.xlsx).
 2. Run `xlsx2policy.py` to compile it into `policy.json` and review the
-   generated conversion report.
+   generated conversion report. Add `--caf-fallback` to let Microsoft CAF fill
+   any resources the customer has not abbreviated.
 3. Reconcile unresolved rows in the workbook (keep them `draft`/`conflict`/
    `missing`), then re-run the converter.
 4. Run the scanner against the customer's local repository.
 5. Add module calls only for covered, `approved` resources.
 6. Review `terraform plan` for replacements before applying naming changes.
 
-If a customer has no workbook yet, copy `policies/example/policy.json` as a
-schema starting point instead, and replace its values with approved rules.
+If a customer has no workbook yet, generate a Microsoft CAF baseline with
+`python xlsx2policy.py --caf-only --out policy.json` and tailor it, or copy
+`policies/example/policy.json` as a schema starting point.
 
 Existing cloud resource names may be immutable or force replacement. This module
 does not rename resources by itself; it only returns deterministic names.
