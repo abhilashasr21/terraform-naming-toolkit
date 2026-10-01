@@ -11,34 +11,68 @@ The toolkit separates three concerns that are usually tangled together:
 
 | Concern | Where it lives | Who owns it |
 | --- | --- | --- |
-| **What** names should look like | `policy.json` (data) | The customer |
+| **What** names should look like | Excel workbook -> `policy.json` | The customer |
 | **How** names are constructed | `module/` + `namingctl.py` (engine) | This toolkit |
 | **Where** names are applied | Customer's Terraform repo | The customer's engineers |
 
 The engine is offline - no cloud calls, no registry, no pip packages. The naming
-rules are replaceable data, so the same engine serves every customer by swapping
-one JSON file.
+rules start life in the customer's **Excel workbook (the source of truth)** and
+are compiled by `xlsx2policy.py` into `policy.json`, which the engine reads. The
+same engine serves every customer by swapping one workbook.
 
 ```
-        +-------------+         +------------------+         +---------------+
-        | policy.json |  ------>|  Engine          | ------> | Generated     |
-        | (customer   |         |  module/ or      |         | names +       |
-        |  rules)     |         |  namingctl.py    |         | diagnostics   |
-        +-------------+         +------------------+         +---------------+
-                                        ^
-        +-------------+                 |
-        | requests /  | ----------------+
-        | values      |
-        | (what to    |
-        |  name)      |
-        +-------------+
+  +------------------+     +---------------+     +------------------+     +---------------+
+  | Naming workbook  | --> | xlsx2policy   | --> | policy.json      | --> |  Engine       |
+  | (.xlsx, source   |     | (converter)   |     | (generated)      |     |  module/ or   |
+  |  of truth)       |     +---------------+     +------------------+     |  namingctl.py |
+  +------------------+                                    ^               +-------+-------+
+                                                          |                       |
+                          +-------------+                 |                       v
+                          | requests /  | ----------------+               +---------------+
+                          | values      |                                 | Generated     |
+                          +-------------+                                 | names + diags |
+                                                                          +---------------+
 ```
 
 ## 2. File-by-file breakdown
 
-### A. The policy (the heart of everything)
+### A0. The converter (`xlsx2policy.py`) - workbook to policy
 
-`policies/example/policy.json` - the replaceable customer ruleset.
+Use this first. It compiles the customer's naming workbook into `policy.json`.
+
+- **Input:** a naming workbook (`.xlsx`) with the recognised sheets (`Region_Codes`,
+  `Code_Reference`, `Comprehensive_Resource_Analysis`, `Resource_List`,
+  `MSFT_Constraint`).
+- **Output:** `policy.json` (engine input) + an optional Markdown conversion
+  report of rules, source patterns, Terraform mappings, and ambiguities.
+- **Offline:** reads `.xlsx` as a zip of XML with the Python standard library
+  only (no openpyxl/pandas/Office).
+
+| Command | Effect |
+| --- | --- |
+| `python xlsx2policy.py book.xlsx --out policy.json` | Compile the workbook into a policy. |
+| `... --report conversion-report.md` | Also write the human review report. |
+| `... --check` | Exit non-zero if `policy.json` is missing or stale versus the workbook (CI gate). |
+
+Sheet-to-policy mapping:
+
+| Workbook sheet | Produces |
+| --- | --- |
+| `Region_Codes` | `code_sets.region` (Region Name/Code -> code) |
+| `Code_Reference` | `code_sets.environment`, `business_service`, `use` |
+| `Comprehensive_Resource_Analysis` or `Resource_List` | `rules` (parsed from `<token>` patterns) |
+| `MSFT_Constraint` | per-rule `min_length`/`max_length`/`uniqueness_scope` |
+| `Resource_List` status column | rule `status` enrichment |
+
+Status mapping: "Done (No Conflict)"/"Agreed" -> `approved`; "In-Progress",
+"To Be Discussed", blank -> `draft` (advisory). The embedded `source_sha256` in
+the policy metadata is what `--check` compares.
+
+### A. The policy (the engine's input - generated from Excel)
+
+`policies/example/policy.json` - a schema example. In production this file is
+**generated from the customer's Excel workbook** by `xlsx2policy.py`; treat it as
+a build artifact, not a hand-edited file.
 
 - **Input to:** the Terraform module and the CLI.
 - **Structure:**
@@ -139,10 +173,12 @@ Read-only inventory of a customer repo (PowerShell 5.1+).
 
 | Path | Purpose |
 | --- | --- |
+| `examples/excel/` | Synthetic sample workbook, its generator, and the converted policy + report. |
 | `examples/batch/` | Generate many names at once via the module + `requests.json` (keyed by `resource_type`). |
 | `examples/inventory/` | Fixtures for the scanner. |
 | `examples/cli/` | Fixtures proving safe literal edit vs. ignored computed/heredoc cases. |
 | `tests/test_namingctl.py` | 28 CLI safety/behaviour tests. |
+| `tests/test_xlsx2policy.py` | 8 converter tests (sheet parsing, section bounds, constraints, end-to-end, staleness). |
 
 ### F. Docs and housekeeping
 
@@ -166,9 +202,9 @@ accidental deployment gate. Only `approved` rules enforce.
 
 ```
 1. Copy the toolkit into the restricted environment.
-2. cp policies/example/policy.json  ->  customer/policy.json
-3. Replace synthetic values with APPROVED customer rules.
-   Leave unresolved rows as draft / conflict / missing.
+2. Compile the customer's naming workbook into a policy:
+   python xlsx2policy.py C:\customer\NamingConvention.xlsx --out customer\policy.json --report customer\conversion-report.md
+3. Review the conversion report; fix unresolved rows in the WORKBOOK, then re-run step 2.
 4. Scan the repo:
    .\scripts\Scan-TerraformResources.ps1 -RepoPath C:\customer\tf -PolicyPath customer\policy.json
 5. Write requests.json mapping each root resource address -> rule + values.

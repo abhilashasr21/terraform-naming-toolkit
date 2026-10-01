@@ -1,0 +1,236 @@
+{
+  "metadata": {
+    "source_workbook": "sample-naming.xlsx",
+    "source_sha256": "7f1e6c6c2b4d27d2ccb8b4c5fb6507cc751b04842a7cf987dd7bc0f490a9037c",
+    "generated_by": "xlsx2policy.py 1.0.0",
+    "notice": "Generated from the naming workbook. Edit the workbook, then re-run the converter. Do not hand-edit."
+  },
+  "normal_case": "lower",
+  "code_sets": {
+    "region": {
+      "east us": "eus",
+      "eus": "eus",
+      "use": "eus",
+      "west europe": "weu",
+      "weu": "weu",
+      "southeast asia": "sea",
+      "sea": "sea",
+      "uk south": "uks",
+      "uks": "uks"
+    },
+    "environment": {
+      "development": "dev",
+      "dev": "dev",
+      "test": "tst",
+      "tst": "tst",
+      "production": "prd",
+      "prd": "prd",
+      "non-production": "nprd",
+      "nprd": "nprd"
+    },
+    "business_service": {
+      "plt": "plt",
+      "platform": "plt",
+      "app": "app",
+      "application": "app"
+    },
+    "use": {
+      "mgmt": "mgmt",
+      "management": "mgmt",
+      "net": "net",
+      "networking": "net"
+    }
+  },
+  "rules": {
+    "resource_group": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^rg(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_resource_group"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "rg"
+        },
+        {
+          "key": "business_service",
+          "code_set": "business_service"
+        },
+        {
+          "key": "region",
+          "code_set": "region"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "index"
+        }
+      ],
+      "max_length": 90
+    },
+    "storage_account": {
+      "status": "approved",
+      "separator": "",
+      "pattern": "^st[a-z0-9]+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_storage_account"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "st"
+        },
+        {
+          "key": "business_service",
+          "code_set": "business_service"
+        },
+        {
+          "key": "region",
+          "code_set": "region"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "index"
+        }
+      ],
+      "min_length": 3,
+      "max_length": 24
+    },
+    "key_vault": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^kv(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "global",
+      "terraform_resource_types": [
+        "azurerm_key_vault"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "kv"
+        },
+        {
+          "key": "business_service",
+          "code_set": "business_service"
+        },
+        {
+          "key": "region",
+          "code_set": "region"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "index"
+        }
+      ],
+      "min_length": 3,
+      "max_length": 24
+    },
+    "virtual_network": {
+      "status": "draft",
+      "separator": "-",
+      "pattern": "^vnet(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_virtual_network"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "vnet"
+        },
+        {
+          "key": "business_service",
+          "code_set": "business_service"
+        },
+        {
+          "key": "region",
+          "code_set": "region"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "index"
+        }
+      ],
+      "max_length": 64
+    },
+    "azure_firewall": {
+      "status": "approved",
+      "separator": "-",
+      "pattern": "^afw(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_firewall"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "afw"
+        },
+        {
+          "key": "business_service",
+          "code_set": "business_service"
+        },
+        {
+          "key": "region",
+          "code_set": "region"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "index"
+        }
+      ],
+      "max_length": 80
+    },
+    "subnet": {
+      "status": "draft",
+      "separator": "-",
+      "pattern": "^snet(?:-[a-z0-9]+)+$",
+      "uniqueness_scope": "unknown",
+      "terraform_resource_types": [
+        "azurerm_subnet"
+      ],
+      "components": [
+        {
+          "key": "resource",
+          "literal": "snet"
+        },
+        {
+          "key": "purpose"
+        },
+        {
+          "key": "business_service",
+          "code_set": "business_service"
+        },
+        {
+          "key": "region",
+          "code_set": "region"
+        },
+        {
+          "key": "environment",
+          "code_set": "environment"
+        },
+        {
+          "key": "index"
+        }
+      ]
+    }
+  }
+}

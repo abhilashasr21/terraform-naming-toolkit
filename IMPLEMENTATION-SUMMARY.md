@@ -29,11 +29,27 @@ It is designed to:
 
 ## Architecture
 
-### Replaceable policy
+### Workbook as source of truth
 
-`policies/example/policy.json` demonstrates the policy contract. A customer
-copies it into a private customer-specific location and replaces the synthetic
-values with approved values for:
+The customer's naming-convention **Excel workbook is the authoritative source**.
+`xlsx2policy.py` compiles it into `policy.json`:
+
+- Reads `.xlsx` as a zip of XML using only the Python standard library (no
+  openpyxl, pandas, Office, or network).
+- Maps recognised sheets: `Region_Codes` -> region codes; `Code_Reference` ->
+  environment/business_service/use codes; `Comprehensive_Resource_Analysis`
+  (or `Resource_List`) -> rules; `MSFT_Constraint` -> length/uniqueness limits.
+- Derives rule `status` from the workbook ("Done (No Conflict)" -> `approved`,
+  unresolved/blank -> `draft`), so unfinished rows stay advisory.
+- Emits a Markdown conversion report of every rule, its source pattern, Terraform
+  mapping, and ambiguities (such as inconsistent separators).
+- Embeds the workbook `source_sha256` in policy metadata; `--check` fails when the
+  policy is stale versus the workbook.
+
+`policy.json` is therefore a generated artifact. Customers edit the workbook and
+re-run the converter rather than hand-editing JSON.
+
+### Replaceable policy schema
 
 - code sets and abbreviations;
 - resource rules and component order;
@@ -116,15 +132,18 @@ normal Terraform validation and plan workflow before deployment.
 
 | Path | Purpose |
 | --- | --- |
+| `xlsx2policy.py` | Offline converter: naming workbook (.xlsx) -> `policy.json`. |
 | `module/` | Reusable Terraform naming module. |
 | `module/tests/naming.tftest.hcl` | Terraform-native module tests. |
 | `policies/example/policy.json` | Synthetic, customer-neutral policy example. |
+| `examples/excel/` | Synthetic sample workbook, generator, converted policy + report. |
 | `examples/batch/` | Batch Terraform name-generation example. |
 | `examples/inventory/` | Scanner fixtures. |
 | `examples/cli/` | CLI editing and ignored-case fixtures. |
 | `scripts/Scan-TerraformResources.ps1` | Offline Terraform inventory scanner. |
 | `namingctl.py` | Standalone offline planning and apply CLI. |
 | `tests/test_namingctl.py` | CLI regression and safety tests. |
+| `tests/test_xlsx2policy.py` | Converter tests (sheet parsing, section bounds, staleness, end-to-end). |
 | `README.md` | Quick start and operating instructions. |
 | `GUIDE.md` | Complete guide to every file, inputs, and outputs. |
 | `IMPLEMENTATION-SUMMARY.md` | Detailed implementation and handoff record. |
@@ -132,8 +151,8 @@ normal Terraform validation and plan workflow before deployment.
 ## Customer onboarding
 
 1. Copy the repository into the restricted environment.
-2. Copy `policies/example/policy.json` to a customer-controlled policy path.
-3. Replace synthetic values only with approved customer rules.
+2. Compile the customer's naming workbook into a policy with `xlsx2policy.py`.
+3. Review the conversion report; fix unresolved rows in the workbook and re-run.
 4. Keep unresolved rows as `draft`, `conflict`, or `missing`.
 5. Run the PowerShell scanner against the local Terraform repository.
 6. Map discovered root resources to explicit request-manifest entries.
@@ -147,6 +166,10 @@ normal Terraform validation and plan workflow before deployment.
 Example:
 
 ```powershell
+python .\xlsx2policy.py C:\customer\NamingConvention.xlsx `
+  --out C:\customer\policy.json `
+  --report C:\customer\conversion-report.md
+
 python .\namingctl.py plan C:\customer\terraform `
   --policy C:\customer\policy.json `
   --requests C:\customer\requests.json
@@ -159,7 +182,7 @@ python .\namingctl.py apply C:\customer\terraform `
 
 ## Validation completed
 
-- Python CLI tests: 28 passed.
+- Python tests: 34 passed, 2 skipped (converter + CLI suites).
 - Windows symlink tests: 2 skipped because the current account lacks symlink
   privileges.
 - Terraform module tests: 6 passed.

@@ -7,3 +7,11 @@ crash.log
 __pycache__/
 *.py[cod]
 NAMING-CHANGELOG.md
+
+# Customer naming workbooks and generated policies are private; never commit them.
+# The synthetic demo workbook and its generated policy under examples/excel are allowed.
+*.xlsx
+!examples/excel/sample-naming.xlsx
+/policy.json
+/naming-policy.json
+/conversion-report.md

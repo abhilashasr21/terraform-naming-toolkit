@@ -4,10 +4,55 @@ This toolkit separates customer naming policy from Terraform implementation. It
 does not contact cloud APIs, registries, or external services during name
 generation and repository inventory.
 
+## Source of truth: the naming workbook
+
+The customer's naming-convention **Excel workbook is the source of truth**.
+`xlsx2policy.py` compiles that workbook into `policy.json`, the structured file
+the engine reads. You edit the workbook; you regenerate the policy:
+
+```powershell
+python .\xlsx2policy.py C:\customer\NamingConvention.xlsx --out .\policy.json --report .\conversion-report.md
+```
+
+`policy.json` is therefore a **generated artifact**, not a hand-edited file. Run
+`--check` in CI or before a plan to fail fast when the policy is stale versus the
+workbook:
+
+```powershell
+python .\xlsx2policy.py C:\customer\NamingConvention.xlsx --out .\policy.json --check
+```
+
+The converter is offline and uses only the Python standard library (it reads the
+`.xlsx` as a zip of XML - no openpyxl, pandas, or Office needed). It recognises
+these sheets:
+
+- `Region_Codes` -> `code_sets.region`
+- `Code_Reference` -> `code_sets.environment` / `business_service` / `use`
+- `Comprehensive_Resource_Analysis` (preferred) or `Resource_List` -> `rules`
+- `MSFT_Constraint` -> per-rule length limits and uniqueness scope
+- `Resource_List` -> rule status enrichment
+
+Resources whose workbook status reads "Done (No Conflict)"/"Agreed" become
+`approved`; unresolved rows ("In-Progress", "To Be Discussed", blank) become
+`draft` and stay advisory. The converter also writes a Markdown report listing
+every rule, its source pattern, Terraform mapping, and any ambiguities (such as
+inconsistent separators) for customer review.
+
+A runnable, customer-neutral example lives in `examples/excel/`:
+
+```powershell
+python .\examples\excel\make_sample_workbook.py .\examples\excel\sample-naming.xlsx
+python .\xlsx2policy.py .\examples\excel\sample-naming.xlsx --out .\examples\excel\policy.json --report .\examples\excel\conversion-report.md
+```
+
 ## Package layout
 
+- `xlsx2policy.py`: Offline converter that compiles the naming workbook (.xlsx)
+  into `policy.json`. The workbook is the source of truth.
 - `module/`: Provider-independent Terraform naming module.
 - `policies/example/`: Synthetic example policy showing the expected schema.
+- `examples/excel/`: Synthetic sample workbook, its generator, and the converted
+  policy + report.
 - `examples/batch/`: Batch generation example driven by JSON requests.
 - `namingctl.py`: Single-file, standard-library CLI for offline planning and
   safe literal-name updates.
@@ -85,13 +130,17 @@ terraform -chdir=examples\batch plan -input=false
 
 ## Onboard another customer
 
-1. Copy `policies/example/policy.json` to a new customer/version folder.
-2. Replace code sets, rule components, patterns, limits, status, and Terraform
-   resource-type mappings with approved customer values.
-3. Keep unresolved rows as `draft`, `conflict`, or `missing`.
+1. Obtain the customer's approved naming workbook (.xlsx).
+2. Run `xlsx2policy.py` to compile it into `policy.json` and review the
+   generated conversion report.
+3. Reconcile unresolved rows in the workbook (keep them `draft`/`conflict`/
+   `missing`), then re-run the converter.
 4. Run the scanner against the customer's local repository.
-5. Add module calls only for covered resources.
+5. Add module calls only for covered, `approved` resources.
 6. Review `terraform plan` for replacements before applying naming changes.
+
+If a customer has no workbook yet, copy `policies/example/policy.json` as a
+schema starting point instead, and replace its values with approved rules.
 
 Existing cloud resource names may be immutable or force replacement. This module
 does not rename resources by itself; it only returns deterministic names.
