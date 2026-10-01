@@ -126,6 +126,7 @@ normal Terraform validation and plan workflow before deployment.
 | `namingctl.py` | Standalone offline planning and apply CLI. |
 | `tests/test_namingctl.py` | CLI regression and safety tests. |
 | `README.md` | Quick start and operating instructions. |
+| `GUIDE.md` | Complete guide to every file, inputs, and outputs. |
 | `IMPLEMENTATION-SUMMARY.md` | Detailed implementation and handoff record. |
 
 ## Customer onboarding

@@ -15,6 +15,7 @@ generation and repository inventory.
   policy-coverage report.
 - `IMPLEMENTATION-SUMMARY.md`: Detailed implementation and customer handoff
   record.
+- `GUIDE.md`: Complete guide to every file, with expected inputs and outputs.
 
 ## Policy lifecycle
 
